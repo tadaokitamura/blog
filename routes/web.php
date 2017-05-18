@@ -11,6 +11,22 @@
 |
 */
 
+//Route::get('/', 'PostController@index');
+//Route::controller('Post', 'PostController');
+
+//Route::resource('/posts', 'PostsController');
+
+/*
+Route::get('/', 'PostController@index');
+Route::get('/detail', 'PostController@detail');
+Route::get('/create', 'PostController@create');
+Route::get('/update', 'PostController@update');
+*/
+
+Route::get('/list', function () {
+	return view('list');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
