@@ -15,14 +15,14 @@ class PostsController extends Controller
     //  $this->posts = $posts;
     //}
 
-    /*
-    public function list()
+    public function index()
     {
         $posts = Post::all();
-        return view('list', [ "posts" => $posts ]);
+        // dd($posts);
+        return view('./posts/index', [ "posts" => $posts ]);
     }
-    */
-    
+
+
     public function detail()
     {
       //return view('detail');
