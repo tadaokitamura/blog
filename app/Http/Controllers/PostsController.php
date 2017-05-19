@@ -2,45 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Post;
 
 class PostsController extends Controller
 {
-    //protected $posts;
-    //public function __construct(Post $article)
-    //{
-    //  $this->posts = $posts;
-    //}
 
     public function index()
     {
         $posts = Post::all();
-        // dd($posts);
-        return view('./posts/index', [ "posts" => $posts ]);
+        return view('posts.index', [ "posts" => $posts ]);
     }
 
 
-    public function detail()
+    // public function show($id)
+    // {
+    //     $post = Post::findOrFail($id);
+    //     return view('posts.show')->with('post', $post);
+    // }
+
+    public function show($id)
     {
-      //return view('detail');
+        $post = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
+
 
     public function create()
     {
-      //return view('create');
+      return view('posts.create');
     }
 
     public function update()
     {
-      //return view('update');
+      //return view('posts.update');
     }
 
     public function delete()
     {
-      //return view('delete');
+      //return view('posts.delete');
     }
 
 }

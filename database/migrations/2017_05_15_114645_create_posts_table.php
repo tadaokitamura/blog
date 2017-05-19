@@ -14,13 +14,11 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->dateTime('create_at');
             $table->dateTime('update_at');
-            /*$table->timestamps();*/
         });
     }
 
     public function down()
     {
         Schema::drop('posts');
-        /* Schema::dropIfExists('posts'); */
     }
 }

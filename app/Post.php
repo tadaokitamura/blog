@@ -6,22 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    /* add -->> //
-    /**
-     * モデルと関連しているテーブル
-     *
-     * @var string
-     */
-    protected $table = 'posts';
 
-    /**
-     * 代入を許可するカラム
-     *
-     * @var array
-     */
+    protected $table = 'posts';
     protected $fillable = [
-        'title',
-        'content',
+    'title',
+    'content',
     ];
-    /* add <<-- */
+
 }
