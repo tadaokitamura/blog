@@ -46,8 +46,10 @@ class PostsController extends Controller
 
     // 画面だけ
     public function edit($post)
+    // public function edit($id)
     {
         $post = Post::findOrFail($post);
+        // $id = Post::findOrFail($id);
 
         return view('posts.edit', compact('post'));
     }
@@ -55,20 +57,15 @@ class PostsController extends Controller
     //実際の処理
     public function update(Request $request, $post)
     {
-        $post = Post::find($post);
+        $post = Post::findOrFail($post);
         $post->update($request->all());
         return redirect()->route('posts.index');
     }
 
     public function destroy($id)
     {
-        // Post::destroy($id);
-        // return redirect()->route('posts.index');
-    }
-
-    public function delete($id)
-    {
-        // return redirect()->route('posts.index');
+        Post::destroy($id);
+        return redirect()->route('posts.index');
     }
 
 }

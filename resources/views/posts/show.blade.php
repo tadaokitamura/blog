@@ -11,11 +11,11 @@
 <br>
 
 <p>
-{{ Form::open(['method' => 'delete', 'url' => '/posts/' . $post->id . '/destroy']) }}
-    {!! Form::submit('削除') !!}
-{!! Form::close() !!}
+    {{ Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete', 'name' => 'delete_' . $post->id])}}
+        {{ Form::submit('削除') }}
+    {{ Form::close() }}
 </p>
-<p>
+
 {{ link_to_route('posts.index', '一覧へ戻る')}}
 </p>
 </body>
