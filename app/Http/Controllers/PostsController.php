@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use DB;
+use DateTime;
+
 
 class PostsController extends Controller
 {
@@ -17,33 +20,55 @@ class PostsController extends Controller
         return view('posts.index', [ "posts" => $posts ]);
     }
 
-
-    // public function show($id)
-    // {
-    //     $post = Post::findOrFail($id);
-    //     return view('posts.show')->with('post', $post);
-    // }
-
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         return view('posts.show')->with('post', $post);
     }
 
-
     public function create()
     {
-      return view('posts.create');
+        return view('posts.create');
     }
 
-    public function update()
+    public function store(Request $request)
     {
-      //return view('posts.update');
+        $data = $request->all();
+        DB::table('posts')->insert([
+            'title' => $data['title'],
+            'content' => $data['content'],
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ]);
+        return redirect()->route('posts.index');
     }
 
-    public function delete()
+
+    // 画面だけ
+    public function edit($post)
     {
-      //return view('posts.delete');
+        $post = Post::findOrFail($post);
+
+        return view('posts.edit', compact('post'));
+    }
+
+    //実際の処理
+    public function update(Request $request, $post)
+    {
+        $post = Post::find($post);
+        $post->update($request->all());
+        return redirect()->route('posts.index');
+    }
+
+    public function destroy($id)
+    {
+        // Post::destroy($id);
+        // return redirect()->route('posts.index');
+    }
+
+    public function delete($id)
+    {
+        // return redirect()->route('posts.index');
     }
 
 }

@@ -12,8 +12,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
-            $table->dateTime('create_at');
-            $table->dateTime('update_at');
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
         });
     }
 

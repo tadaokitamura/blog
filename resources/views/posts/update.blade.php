@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
-	<title>新規作成画面</title>
+	<title>編集画面</title>
 </head>
 <body>
-<h1>新規作成</h1>
 <p>
 	{!! Form::open(['url' => 'posts']) !!}
 		タイトル：<br>
@@ -20,7 +19,8 @@
 		</div>
 	{!! Form::close() !!}
 </p>
-
-{{ link_to_route('posts.index', '一覧へ戻る')}}
+<p>
+    {{ link_to_route('posts.index', '一覧へ戻る')}}
+</p>
 </body>
 </html>
