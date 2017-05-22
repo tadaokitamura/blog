@@ -45,12 +45,8 @@ class PostsController extends Controller
 
 
     // 画面だけ
-    public function edit($post)
-    // public function edit($id)
-    {
+    public function edit($post) {
         $post = Post::findOrFail($post);
-        // $id = Post::findOrFail($id);
-
         return view('posts.edit', compact('post'));
     }
 
