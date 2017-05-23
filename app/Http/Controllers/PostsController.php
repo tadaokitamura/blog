@@ -38,6 +38,10 @@ class PostsController extends Controller
     // 新規作成データを追加
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|min:3|max:30',
+            'content' => 'required|max:255'
+        ]);
         $post = Post::create($request->all());
         return redirect()->route('posts.index');
     }
@@ -51,6 +55,10 @@ class PostsController extends Controller
     // 編集内容でデータベースを更新
     public function update(Request $request, $post)
     {
+        $this->validate($request, [
+            'title' => 'required|min:3|max:30',
+            'content' => 'required|max:255'
+        ]);
         $post = Post::find($post);
         $post->update($request->all());
         return redirect()->route('posts.index');
