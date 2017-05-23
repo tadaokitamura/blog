@@ -43,7 +43,9 @@ class PostsController extends Controller
             'content' => 'required|max:255'
         ]);
         $post = Post::create($request->all());
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with(
+            'status', $post->id . '番目の記事を投稿しました'
+        );
     }
 
     // 更新（編集）画面
@@ -61,14 +63,18 @@ class PostsController extends Controller
         ]);
         $post = Post::find($post);
         $post->update($request->all());
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with(
+            'status', $post->id . '番目の記事を更新しました'
+        );
     }
 
     // 選択されたidのデータを削除
     public function destroy($id)
     {
         Post::destroy($id);
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with(
+            'status', $id . '番目の記事を削除しました'
+        );
     }
 
 }
