@@ -17,7 +17,8 @@ class PostsController extends Controller
     //一覧画面
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::all();
+        $posts = Post::simplePaginate(5);
         return view('posts.index', compact('posts'));
     }
 

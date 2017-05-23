@@ -18,6 +18,7 @@
             登録がありません
         @endforelse
     </ul>
+    {{ $posts->links() }}
     {{ link_to_route('posts.create', '新規登録')}}
 </body>
 </html>
