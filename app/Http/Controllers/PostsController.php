@@ -17,8 +17,9 @@ class PostsController extends Controller
     //一覧画面
     public function index()
     {
-        // $posts = Post::all();
-        $posts = Post::simplePaginate(5);
+
+        $posts = Post::all();
+        // $posts = Post::simplePaginate(5);
         return view('posts.index', compact('posts'));
     }
 
@@ -39,6 +40,8 @@ class PostsController extends Controller
     // 新規作成データを追加
     public function store(Request $request)
     {
+        // dd($request);
+
         $this->validate($request, [
             'title' => 'required|min:3|max:30',
             'content' => 'required|max:255'
@@ -58,6 +61,9 @@ class PostsController extends Controller
     // 編集内容でデータベースを更新
     public function update(Request $request, $post)
     {
+        // dd($request->title);
+        // dd($request->content);
+
         $this->validate($request, [
             'title' => 'required|min:3|max:30',
             'content' => 'required|max:255'
@@ -72,10 +78,27 @@ class PostsController extends Controller
     // 選択されたidのデータを削除
     public function destroy($id)
     {
+        // dd($id);
+
         Post::destroy($id);
         return redirect()->route('posts.index')->with(
             'status', $id . '番目の記事を削除しました'
         );
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $posts = Post::where('title', 'like', '%' .$keyword. '%')
+            ->orwhere('content', 'like', '%' .$keyword. '%')->get();
+
+
+
+        // dd($posts);
+        return view('posts.index', compact('posts'));
+    }
+
+
 
 }

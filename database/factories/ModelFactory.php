@@ -15,9 +15,7 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
-        /* add -->> */
         'title' => $faker->word,
         'content' => $faker->text,
-        /* add <<-- */
     ];
 });

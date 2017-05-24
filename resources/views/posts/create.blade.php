@@ -8,11 +8,11 @@
 {{ Form::open(['route' => ['posts.store']]) }}
     <div>
         タイトル：<br>
-        {{ Form::text('title', $post->title) }}
+        {{ Form::text('title') }}
     </div>
     <div>
         記事内容：<br>
-        {{ Form::textarea('content', $post->content) }}
+        {{ Form::textarea('content') }}
     </div>
     <div>
         {{ Form::submit('登録')}}

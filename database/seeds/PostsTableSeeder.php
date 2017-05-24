@@ -9,8 +9,9 @@ class PostsTableSeeder extends Seeder
         DB::table('posts')->insert([
             'title' => 'タイトル',
             'content' => 'コンテンツ',
-            'create_at' => new DateTime(),
-            'update_at' => new DateTime()
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
         ]);
     }
+
 }
