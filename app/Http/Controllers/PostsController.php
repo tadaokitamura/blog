@@ -88,12 +88,23 @@ class PostsController extends Controller
 
     public function search(Request $request)
     {
+
+        $this->validate($request, [
+            'keyword' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required'
+        ]);
+
         $keyword = $request->input('keyword');
+        $date_start = $request->input('date_start');
+        $date_end = $request->input('date_end');
 
-        $posts = Post::where('title', 'like', '%' .$keyword. '%')
-            ->orwhere('content', 'like', '%' .$keyword. '%')->get();
-
-
+        $posts = Post::where(function ($query) use ($keyword) {
+            $query->where('title', 'like', '%' .$keyword. '%')
+            ->orWhere('content', 'like', '%' .$keyword. '%');
+        })
+        ->wherebetween('created_at', [$date_start, $date_end])
+        ->get();
 
         // dd($posts);
         return view('posts.index', compact('posts'));
