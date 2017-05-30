@@ -1,0 +1,36 @@
+/* 祝！！　初スタイルシート！？ */
+
+h1 {
+
+    font-size: 20px;
+    font-family: Courgette, 游ゴシック, メイリオ;
+    color: #000000;
+    padding-bottom: 10px;
+    border-bottom: 3px double #ccc;
+
+}
+
+body {
+
+    font-size: 16px;
+    font-family: Courgette, 游ゴシック, メイリオ;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+
+    /* 日付範囲指定用のテキストボックが降り返らない幅で */
+    width: 540px;
+
+    /*表示を中央揃えに*/
+    margin: 0 auto;
+
+}
+
+
+ul > li {
+    padding: 3px 0;
+}

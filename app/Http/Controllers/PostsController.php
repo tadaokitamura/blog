@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\AuthController;
 use App\Post;
 use DB;
 use DateTime;
@@ -18,8 +20,8 @@ class PostsController extends Controller
     public function index()
     {
 
-        $posts = Post::all();
-        // $posts = Post::simplePaginate(5);
+        // $posts = Post::all();
+        $posts = Post::Paginate(5);
         return view('posts.index', compact('posts'));
     }
 
@@ -104,7 +106,9 @@ class PostsController extends Controller
             ->orWhere('content', 'like', '%' .$keyword. '%');
         })
         ->wherebetween('created_at', [$date_start, $date_end])
-        ->get();
+        ->get()->Paginate(5);
+
+
 
         // dd($posts);
         return view('posts.index', compact('posts'));
