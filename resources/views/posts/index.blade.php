@@ -6,7 +6,19 @@
 <div class="container">
 
     <!-- 一覧表示タイトル -->
-    <h1>一覧表示（ {{count($posts)}}）件</h1>
+    <h1>
+        一覧表示（ {{count($posts)}}）件
+        <ul class="nav navbar-nav navbar-right">
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </ul>
+    </h1>
 
     <!-- フラッシュメッセージを表示 -->
     @if(Session::has('status'))

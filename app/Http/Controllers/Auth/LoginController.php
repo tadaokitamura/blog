@@ -12,7 +12,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     //Where to redirect users after login.
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
      //Create a new controller instance.
     public function __construct()

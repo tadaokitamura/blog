@@ -16,6 +16,11 @@ use DateTime;
 class PostsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //一覧画面
     public function index()
     {
