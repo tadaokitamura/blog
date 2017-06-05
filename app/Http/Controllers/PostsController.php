@@ -20,8 +20,8 @@ class PostsController extends Controller
     public function index()
     {
 
-        // $posts = Post::all();
-        $posts = Post::Paginate(5);
+        $posts = Post::all();
+        // $posts = Post::Paginate(5);
         return view('posts.index', compact('posts'));
     }
 
@@ -88,32 +88,16 @@ class PostsController extends Controller
         );
     }
 
-    public function search(Request $request)
-    {
+        public function search(Request $request)
+        {
 
-        $this->validate($request, [
-            'keyword' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required'
-        ]);
+            $attributes = $request->only(['keyword', 'date_start', 'date_end']);
+            $blogsearch = Post::blogsearch($attributes);
+            // dd($blogsearch);
+            $posts = $blogsearch;
 
-        $keyword = $request->input('keyword');
-        $date_start = $request->input('date_start');
-        $date_end = $request->input('date_end');
+            return view('posts.index', compact('posts'));
 
-        $posts = Post::where(function ($query) use ($keyword) {
-            $query->where('title', 'like', '%' .$keyword. '%')
-            ->orWhere('content', 'like', '%' .$keyword. '%');
-        })
-        ->wherebetween('created_at', [$date_start, $date_end])
-        ->get()->Paginate(5);
-
-
-
-        // dd($posts);
-        return view('posts.index', compact('posts'));
-    }
-
-
+        }
 
 }

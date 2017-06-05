@@ -3,7 +3,6 @@
 @section('title', '一覧表示')
 
 @section('content')
-
 <div class="container">
 
     <!-- 一覧表示タイトル -->
@@ -36,15 +35,12 @@
                 {{ link_to_route('posts.show', $post->title, [$post->id]) }}
                 {{ link_to_route('posts.edit', ' ( 編集 )', [$post->id]) }}
             </li>
+
         @empty
             登録がありません
         @endforelse
     </ul>
 
-<!-- ページャ -->
-<div>{{ $posts->links() }}</div>
-
 </div>
-
 
 @endsection
